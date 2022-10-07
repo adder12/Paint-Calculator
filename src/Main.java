@@ -6,7 +6,7 @@ import java.lang.Math;
 public class Main {
     public static void main(String[] args) {
 
-       final int paintCanVol = 1000;
+      // final int paintCanVol = 1000;
        final int paintVolNeeded = 100;
         Scanner scan = new Scanner(System.in);
         Paint[] paintTypes = setPaints();
@@ -67,8 +67,8 @@ public class Main {
 
         double paintNeeded = totalArea * paintVolNeeded;
 
-        int cansNeeded = (int) Math.ceil(paintNeeded/paintCanVol);
-        System.out.println("In total to paint all " + wallNumber + " walls, you will need " + paintNeeded + "mls of paint! Assuming a can size of " + paintCanVol + "ml, you will need " + cansNeeded + " cans of " + chosenPaint);
+        int cansNeeded = (int) Math.ceil(paintNeeded/chosenPaint.getCanSizeMl());
+        System.out.println("In total to paint all " + wallNumber + " walls, you will need " + paintNeeded + "mls of paint! Assuming a can size of " + paintCanVol + "ml, you will need " + cansNeeded + " cans of " + chosenPaint.getName());
 
         }
 
