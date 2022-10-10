@@ -49,12 +49,12 @@ public class Main {
         System.out.println("please enter the number of walls");
         int wallCount = scan.nextInt();
 
-        double[] lengthArray = new double[wallCount];
-        double[] heightArray = new double[wallCount];
-        double[] wallArea = new double[wallCount];
-        double totalArea = 0;
+        //double[] lengthArray = new double[wallCount];
+       // double[] heightArray = new double[wallCount];
+        //double[] wallArea = new double[wallCount];
+        double totalArea;
 
-        int wallNumber = 0;
+        /*int wallNumber = 0;
         for(int i = 0;i < wallCount;i++){
             wallNumber++;
             System.out.println("Please enter the length of wall number: " + wallNumber );
@@ -64,11 +64,13 @@ public class Main {
             wallArea[i] = lengthArray[i] * heightArray[i];
             totalArea += wallArea[i];
         }
+*/
 
+        totalArea = calculateArea(wallCount, scan);
         double paintNeeded = totalArea * paintVolNeeded;
 
         int cansNeeded = (int) Math.ceil(paintNeeded/chosenPaint.getCanSizeMl());
-        System.out.println("In total to paint all " + wallNumber + " walls, you will need " + paintNeeded + "mls of paint! Assuming a can size of " + paintCanVol + "ml, you will need " + cansNeeded + " cans of " + chosenPaint.getName());
+        System.out.println("In total to paint all " + wallCount + " walls, you will need " + paintNeeded + "mls of paint! With a can size of " + chosenPaint.getCanSizeMl() + "ml, you will need " + cansNeeded + " cans of " + chosenPaint.getName());
 
         }
 
@@ -119,6 +121,56 @@ public class Main {
 
             } while (!paintCorrect);
         return chosenPaint;
+        }
+        public static double calculateArea (int numWalls, Scanner scan){
+        boolean[] obstruction = new boolean[numWalls];
+        double area = 0;
+
+
+        Wall[] walls = new Wall[numWalls];
+
+
+        for(int i = 0; i < numWalls; i++){
+            System.out.println("Please enter the length of wall " + numWalls+1);
+            double length = scan.nextDouble();
+
+            System.out.println("Please enter the height of wall " + numWalls+1);
+            double height = scan.nextDouble();
+
+            System.out.println("How many Obstructions does this wall have?");
+            int obstructCount = scan.nextInt();
+
+
+            if(obstructCount != 0){
+                Obstruction[] obstructions = new Obstruction[obstructCount];
+                obstruction[i] = true;
+                for(int j = 0;j< obstructCount;j++){
+                    System.out.println("please enter the length of the next obstruction");
+                    double obsLength = scan.nextDouble();
+                    System.out.println("please enter the height of the next obstruction");
+                    double obsHeight = scan.nextDouble();
+
+
+                    obstructions[j] = new Obstruction(obsLength, obsHeight);
+
+                }
+
+                walls[i] = new Wall(length, height, obstructions);
+            }else{
+                walls[i] = new Wall(length,height);
+            }
+
+
+        }
+        for(int k = 0; k < numWalls; k++){
+            area += walls[k].getArea();
+            if(obstruction[k]){
+                for(int l = 0;l < walls[k].getSingleObstruction(l).getLength();l++){
+                    area += walls[k].getSingleObstruction(l).getArea();
+                }
+            }
+        }
+            return area;
         }
 
 
