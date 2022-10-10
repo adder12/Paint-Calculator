@@ -67,6 +67,7 @@ public class Main {
 */
 
         totalArea = calculateArea(wallCount, scan);
+
         double paintNeeded = totalArea * paintVolNeeded;
 
         int cansNeeded = (int) Math.ceil(paintNeeded/chosenPaint.getCanSizeMl());
@@ -142,7 +143,7 @@ public class Main {
 
 
             if(obstructCount != 0){
-                Obstruction[] obstructions = new Obstruction[obstructCount];
+                RectObstruction[] rectObstructions = new RectObstruction[obstructCount];
                 obstruction[i] = true;
                 for(int j = 0;j< obstructCount;j++){
                     System.out.println("please enter the length of the next obstruction");
@@ -151,11 +152,11 @@ public class Main {
                     double obsHeight = scan.nextDouble();
 
 
-                    obstructions[j] = new Obstruction(obsLength, obsHeight);
+                    rectObstructions[j] = new RectObstruction(obsLength, obsHeight);
 
                 }
 
-                walls[i] = new Wall(length, height, obstructions);
+                walls[i] = new Wall(length, height, rectObstructions);
             }else{
                 walls[i] = new Wall(length,height);
             }

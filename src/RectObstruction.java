@@ -1,4 +1,4 @@
-public class Obstruction {
+public class RectObstruction {
     private double height;
     private double length;
     private double area;
@@ -30,7 +30,7 @@ public class Obstruction {
 
 
 
-    public Obstruction(double length, double height){
+    public RectObstruction(double length, double height){
 
         this.length = length;
         this.height = height;

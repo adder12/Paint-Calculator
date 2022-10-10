@@ -3,7 +3,7 @@ public class Wall {
     private double height;
     private double area;
 
-    private Obstruction[] obstructions;
+    private RectObstruction[] rectObstructions;
 
 
     public double getLength() {
@@ -29,9 +29,9 @@ public class Wall {
     public void setArea() {
         this.area = this.length * this.height;
     }
-    public Obstruction getSingleObstruction(int index){
+    public RectObstruction getSingleObstruction(int index){
 
-        return this.obstructions[index];
+        return this.rectObstructions[index];
 
     }
 
@@ -47,10 +47,10 @@ public class Wall {
         this.height = 0;
         this.area = 0;
     }
-    public  Wall(double length, double height, Obstruction[] obstructions){
+    public  Wall(double length, double height, RectObstruction[] rectObstructions){
         this.length = length;
         this.height = height;
         this.area = this.height * this.length;
-        this.obstructions = obstructions;
+        this.rectObstructions = rectObstructions;
     }
 }
